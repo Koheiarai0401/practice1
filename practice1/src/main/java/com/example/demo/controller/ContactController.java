@@ -1,36 +1,47 @@
 package com.example.demo.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.form.ContactForm;
 
 @Controller
 public class ContactController {
+
+    @GetMapping("/contact")
+    public String contact(Model model) {
+        model.addAttribute("contactForm", new ContactForm());
+
+        return "contact";
+    }
+
     @PostMapping("/contact")
-    public ModelAndView contact(@RequestParam("lastName") String lastName,
-                                @RequestParam("firstName") String firstName,
-                                @RequestParam("email") String email,
-                                @RequestParam("phone") String phone,
-                                @RequestParam("zipCode") String zipCode,
-                                @RequestParam("address") String address,
-                                @RequestParam("buildingName") String buildingName,
-                                @RequestParam("contactType") String contactType,
-                                @RequestParam("body") String body,
-                                ModelAndView mv) {
+    public String contact(@Validated @ModelAttribute("contactForm") ContactForm contactForm, BindingResult errorResult, HttpServletRequest request) {
 
-        mv.setViewName("confirmation");
+        if (errorResult.hasErrors()) {
+          return "contact";
+        }
 
-        mv.addObject("lastName", lastName);
-        mv.addObject("firstName", firstName);
-        mv.addObject("email", email);
-        mv.addObject("phone", phone);
-        mv.addObject("zipCode", zipCode);
-        mv.addObject("address", address);
-        mv.addObject("buildingName", buildingName);
-        mv.addObject("contactType", contactType);
-        mv.addObject("body", body);
+        HttpSession session = request.getSession();
+        session.setAttribute("contactForm", contactForm);
 
-        return mv;
+        return "redirect:/contact/confirm";
+    }
+
+    @GetMapping("/contact/confirm")
+    public String confirm(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        ContactForm contactForm = (ContactForm) session.getAttribute("contactForm");
+        model.addAttribute("contactForm", contactForm);
+        return "confirmation";
     }
 }
