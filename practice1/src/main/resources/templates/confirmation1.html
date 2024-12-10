@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録の確認</title>
+</head>
+<body>
+	<h1>新規登録の確認</h1>
+	<form action="register" method="post">
+		<tanle border="1">
+			<tr>
+				<td>姓</td>
+				<td>
+					<span th:text="${lastName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>名</td>
+				<td>
+					<span th:text="${firstName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>メールアドレス</td>
+				<td>
+					<span th:text="${email}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>パスワード</td>
+				<td>
+					<span th:text="${password}"></span>
+				</td>
+			</tr>
+		</tanle>
+	</form>
+</body>
+</html>
