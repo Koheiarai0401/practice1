@@ -6,33 +6,34 @@
 </head>
 <body>
 	<h1>新規登録の確認</h1>
-	<form action="register" method="post">
+	<form th:action="@{/signup/register}" th:object="${signupForm}" method="post">
 		<tanle border="1">
 			<tr>
 				<td>姓</td>
 				<td>
-					<span th:text="${lastName}"></span>
+					<span th:text="*{lastName}"></span>
 				</td>
 			</tr>
 			<tr>
 				<td>名</td>
 				<td>
-					<span th:text="${firstName}"></span>
+					<span th:text="*{firstName}"></span>
 				</td>
 			</tr>
 			<tr>
 				<td>メールアドレス</td>
 				<td>
-					<span th:text="${email}"></span>
+					<span th:text="*{email}"></span>
 				</td>
 			</tr>
 			<tr>
 				<td>パスワード</td>
 				<td>
-					<span th:text="${password}"></span>
+					<span th:text="*{password}"></span>
 				</td>
 			</tr>
 		</tanle>
+		<input type="submit" value="送信">
 	</form>
 </body>
 </html>

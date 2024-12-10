@@ -3,7 +3,6 @@ package com.example.demo.form;
 import java.io.Serializable;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -21,6 +20,5 @@ public class SignupForm implements Serializable {
     private String email;
 
     @NotBlank
-    @Min(10)
     private String password;
 }
