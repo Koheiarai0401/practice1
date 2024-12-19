@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2>ログイン画面</h2>
+	
+	<form th:action="@{/signin}" method="post" th:object="${signinForm}">
+		<!-- CSRFトークンをここに追加 -->
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		
+		<!-- エラーメッセージの表示 -->
+		<span th:if="${errorMsg != null}" th:text="${errorMsg}"></span>
+
+		<div>
+			<label>メールアドレス</label>
+			<input type="text" th:field="*{email}" required>
+		</div>
+		<div>
+			<label>パスワード</label>
+			<input type="password" th:field="*{password}" required>
+		</div>
+		<div>
+			<input type="submit" value="ログイン">
+		</div>
+	</form>
+
+</body>
+</html>
