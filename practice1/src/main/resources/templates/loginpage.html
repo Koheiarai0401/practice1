@@ -5,8 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form method="POST" class="hoge">
+	  <input
+	    type="hidden"
+	    th:name="${_csrf.parameterName}"
+	    th:value="${_csrf.token}">
 	<span th:text="${errorMsg}"></span>
-	<h2>ログイン画面</h2>
+	</form>
+		<h2>ログイン画面</h2>
 	<form th:action＝"@{/loginpage}" method="post" th:object="${loginForm}" >
 		<div>
 			<label>メールアドレス</label>

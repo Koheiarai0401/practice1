@@ -15,12 +15,11 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "signup")
+@Table(name = "admins")
 public class Signup {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自動増分IDを指定
+	private Long id;
     
     @Column(name = "last_name", nullable = false)
     private String lastName;

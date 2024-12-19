@@ -1,9 +1,10 @@
-package com.example.demo.form;
-
-import lombok.Data;
-
-@Data
-public class LoginForm {
-	private String email;
-	private String password;
-}
+//package com.example.demo.form;
+//
+//import lombok.Data;
+//
+//@Data
+//public class LoginForm {
+//	private String email;
+//	private Long id;
+//	private String password;
+//}
