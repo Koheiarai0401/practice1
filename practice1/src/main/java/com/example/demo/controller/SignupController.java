@@ -23,36 +23,36 @@ public class SignupController {
     
     private final SignupRepository signupRepository; // フィールドに変更 (final + @RequiredArgsConstructor)
 
-    @GetMapping("/signup")
+    @GetMapping("/admin/signup")
     public String signup(Model model) {
         model.addAttribute("signupForm", new SignupForm());
-        return "signup";
+        return "/admin/signup";
     }
     
-    @PostMapping("/signup")
+    @PostMapping("/admin/signup")
     public String signup(@Validated @ModelAttribute("signupForm") SignupForm signupForm, 
                          BindingResult errorResult, 
                          HttpServletRequest request)  {
         if (errorResult.hasErrors()) {
-            return "signup";
+            return "/admin/signup";
         }
 
         HttpSession session = request.getSession();
         session.setAttribute("signupForm", signupForm);
         
-        return "redirect:/signup/confirm1";
+        return "redirect:/admin/signup/confirm1";
     }
     
-    @GetMapping("/signup/confirm1")
+    @GetMapping("/admin/signup/confirm1")
     public String confirm1(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         SignupForm signupForm = (SignupForm) session.getAttribute("signupForm");
         model.addAttribute("signupForm", signupForm);
-        return "confirmation1";
+        return "/admin/confirmation1";
     }
     
-    @PostMapping("/signup/register")
+    @PostMapping("/admin/signup/register")
     public String register(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         SignupForm signupForm = (SignupForm) session.getAttribute("signupForm");
@@ -66,13 +66,13 @@ public class SignupController {
         
         signupRepository.save(signup); // 大文字のSignupRepository → 小文字のsignupRepositoryに修正
         
-        return "redirect:/signup/complete";
+        return "redirect:/admin/signup/complete";
     }
     
-    @GetMapping("/signup/complete")
+    @GetMapping("/admin/signup/complete")
     public String complete(Model model, HttpServletRequest request) {
         if (request.getSession(false) == null) {
-            return "redirect:/signup";
+            return "redirect:/admin/signup";
         }
         
         HttpSession session = request.getSession();
@@ -81,6 +81,6 @@ public class SignupController {
         
         session.invalidate();
         
-        return "completion1";
+        return "/admin/completion1";
     }
 }

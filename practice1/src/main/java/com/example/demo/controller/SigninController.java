@@ -20,13 +20,13 @@ public class SigninController {
     /**
      * サインインページの表示
      */
-    @GetMapping("/signin")
+    @GetMapping("/admin/signin")
     public String view(Model model) {
         model.addAttribute("signinForm", new SigninForm()); // 空のフォームを初期化
-        return "signin"; // signin.htmlを表示
+        return "/admin/signin"; // signin.htmlを表示
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/admin/signin")
     public String login(@ModelAttribute SigninForm signinForm, Model model) {
         var signin = service.searchSigninByEmail(signinForm.getEmail());
         
@@ -34,11 +34,11 @@ public class SigninController {
                 && signinForm.getPassword().equals(signin.get().getPassword());
         
         if (isCorrectUserAuth) {
-            return "redirect:/menu"; // ログイン成功 → メニュー画面へリダイレクト
+            return "redirect:/admin/contacts"; // ログイン成功 → メニュー画面へリダイレクト
         } else {
             model.addAttribute("errorMsg", "メールアドレスとパスワードの組み合わせが間違っています");
             model.addAttribute("signinForm", signinForm); // フォーム情報を再セット
-            return "signin"; // signin.htmlを再表示
+            return "/admin/signin"; // signin.htmlを再表示
         }
     }
 }
