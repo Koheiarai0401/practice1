@@ -17,7 +17,7 @@ public class ContactsService {
 		return contactsRepository.findAll();
 	}
 	
-//	public Contacts findById(Long id) {
-//		return contactsRepository.findById(id).get();
-//	}
+	public Contacts findById(Long id) {
+		return contactsRepository.findById(id).get();
+	}
 }

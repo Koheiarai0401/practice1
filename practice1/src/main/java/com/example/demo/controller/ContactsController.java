@@ -25,8 +25,8 @@ public class ContactsController {
 	
 	@GetMapping("/admin/{id}")
 	public String displayView(@PathVariable Long id, Model model) {
-//		Contacts contacts = contactsService.findById(id);
-//		model.addAttribute("contactsData", contacts);
+		Contacts contacts = contactsService.findById(id);
+		model.addAttribute("contactsData", contacts);
 		return "admin/view";
 	}
 }
