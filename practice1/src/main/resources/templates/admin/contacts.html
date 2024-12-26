@@ -26,7 +26,7 @@
 					<td th:text="*{contactType}"></td>
 					<td th:text="${#dates.format(contacts.createdAt, 'yyyy/MM/dd')}"></td>
 					<td th:text="${#dates.format(contacts.updatedAt, 'yyyy/MM/dd')}"></td>
-					<td><a th:href="@{contacts/{id}(id=*{id})}" class="btn btn-secondary">詳細</a></td>
+					<td><a th:href="@{/admin/{id}(id=*{id})}" class="btn btn-secondary">詳細</a></td>
 				</tr>
 			</tbody>
 		</table>
