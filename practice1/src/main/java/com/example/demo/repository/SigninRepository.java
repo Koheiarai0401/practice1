@@ -9,3 +9,4 @@ import com.example.demo.entity.Signin;
 public interface SigninRepository extends JpaRepository<Signin, String>{
 }
 
+ 
