@@ -40,16 +40,16 @@ public class SignupController {
         HttpSession session = request.getSession();
         session.setAttribute("signupForm", signupForm);
         
-        return "redirect:/admin/signup/confirm1";
+        return "redirect:/admin/signup/confirm";
     }
     
-    @GetMapping("/admin/signup/confirm1")
+    @GetMapping("/admin/signup/confirm")
     public String confirm1(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         SignupForm signupForm = (SignupForm) session.getAttribute("signupForm");
         model.addAttribute("signupForm", signupForm);
-        return "/admin/confirmation1";
+        return "/admin/confirmation";
     }
     
     @PostMapping("/admin/signup/register")
@@ -81,6 +81,6 @@ public class SignupController {
         
         session.invalidate();
         
-        return "/admin/completion1";
+        return "/admin/completion";
     }
 }

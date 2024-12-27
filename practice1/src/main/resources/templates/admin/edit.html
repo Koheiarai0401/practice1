@@ -11,7 +11,7 @@
 			<label class="text-danger" th:text="${error}"></label>
 		</div>
 		<h1>ユーザー情報編集</h1>
-		<form th:action="@{/admin/update}" th:object="${contactsUpdateRequest}" th:method="post">
+		<form th:action="@{/admin/update}" th:object="${contactUpdateRequest}" th:method="post">
 			<input type="hidden" th:field="*{id}">
 			<div>
 				<div class="row mx-md-n5">

@@ -7,7 +7,7 @@
 <body>
 	<div class="container">
 	  <h1>ユーザー情報詳細画面</h1>
-	  <div th:object="${contactsData}">
+	  <div th:object="${contactData}">
 		<div class="row mx-md-n5">
 		  <div class="col-2 pt-3 border bg-light">お問い合わせID</div>
 		  <div class="col pt-3 border">
@@ -85,7 +85,7 @@
 	  <div class="text-center">
 	    <a th:href="@{/admin/{id}/edit(id=*{id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
 		<a th:href="@{/admin/{id}/delete(id=*{id})}" class="btn btn-secondary">　削除　</a>
-	    <a href="/admin/contacts" class="btn btn-secondary">一覧に戻る</a>
+	    <a href="/admin/contact" class="btn btn-secondary">一覧に戻る</a>
 		<a href="/admin/signin" class="btn btn-secondary">ログアウト</a>
 	  </div>
 	</div>

@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.form;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class ContactsRequest implements Serializable {
+public class ContactRequest implements Serializable {
 	
     @NotBlank
     private String lastName;

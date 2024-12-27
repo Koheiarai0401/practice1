@@ -21,7 +21,7 @@ public class SigninController {
      * サインインページの表示
      */
     @GetMapping("/admin/signin")
-    public String view(Model model) {
+    public String detail(Model model) {
         model.addAttribute("signinForm", new SigninForm()); // 空のフォームを初期化
         return "/admin/signin"; // signin.htmlを表示
     }

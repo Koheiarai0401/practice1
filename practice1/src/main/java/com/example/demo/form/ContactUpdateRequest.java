@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.form;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ContactsUpdateRequest extends ContactsRequest implements Serializable{
+public class ContactUpdateRequest extends ContactRequest implements Serializable{
 	  @NotNull
 	  private Long id;
 }

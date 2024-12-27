@@ -19,13 +19,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="contacts : ${contactslist}" th:object="${contacts}" class="align-middle">
+				<tr th:each="contact : ${contactlist}" th:object="${contact}" class="align-middle">
 					<td th:text="*{id}"></td>
 					<td th:text="*{firstName}"></td>
 					<td th:text="*{lastName}"></td>
 					<td th:text="*{contactType}"></td>
-					<td th:text="${#dates.format(contacts.createdAt, 'yyyy/MM/dd')}"></td>
-					<td th:text="${#dates.format(contacts.updatedAt, 'yyyy/MM/dd')}"></td>
+					<td th:text="${#dates.format(contact.createdAt, 'yyyy/MM/dd')}"></td>
+					<td th:text="${#dates.format(contact.updatedAt, 'yyyy/MM/dd')}"></td>
 					<td><a th:href="@{/admin/{id}(id=*{id})}" class="btn btn-secondary">詳細</a></td>
 				</tr>
 			</tbody>
