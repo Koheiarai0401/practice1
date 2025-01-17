@@ -7,6 +7,5 @@ import com.example.demo.entity.Signin;
 
 @Repository
 public interface SigninRepository extends JpaRepository<Signin, String>{
+	Signin findByUsername(String username);
 }
-
- 

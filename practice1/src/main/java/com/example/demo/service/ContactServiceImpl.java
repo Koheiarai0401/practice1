@@ -30,6 +30,9 @@ public class ContactServiceImpl implements ContactService {
         contactRepository.save(contact);
     }
 	
+    @Autowired
+    private ContactRepository cpmtactRepository;
+    
 	public List<Contact> searchAll() {
 		return contactRepository.findAll();
 	}

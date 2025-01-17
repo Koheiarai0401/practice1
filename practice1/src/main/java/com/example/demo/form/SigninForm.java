@@ -1,10 +1,13 @@
 package com.example.demo.form;
 
+import jakarta.persistence.Id;
+
 import lombok.Data;
 
 @Data
 public class SigninForm {
 	private String email;
-	private Long id;
 	private String password;
+	  @Id
+	  private String id;
 }

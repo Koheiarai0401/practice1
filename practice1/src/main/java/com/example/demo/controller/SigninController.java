@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.form.SigninForm;
-import com.example.demo.service.SigninService;
+import com.example.demo.service.UserDetailsServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SigninController {
 
-    private final SigninService service;
+    private final UserDetailsServiceImpl service;
 
     /**
      * サインインページの表示
@@ -25,20 +25,11 @@ public class SigninController {
         model.addAttribute("signinForm", new SigninForm()); // 空のフォームを初期化
         return "/admin/signin"; // signin.htmlを表示
     }
-
+    
     @PostMapping("/admin/signin")
-    public String login(@ModelAttribute SigninForm signinForm, Model model) {
-        var signin = service.searchSigninByEmail(signinForm.getEmail());
-        
-        var isCorrectUserAuth = signin.isPresent() 
-                && signinForm.getPassword().equals(signin.get().getPassword());
-        
-        if (isCorrectUserAuth) {
-            return "redirect:/admin/contacts"; // ログイン成功 → メニュー画面へリダイレクト
-        } else {
-            model.addAttribute("errorMsg", "メールアドレスとパスワードの組み合わせが間違っています");
-            model.addAttribute("signinForm", signinForm); // フォーム情報を再セット
-            return "/admin/signin"; // signin.htmlを再表示
-        }
+    public String signin(@ModelAttribute SigninForm signinForm, Model model) {
+        // ログイン認証処理を追加
+        return "redirect:/admin/contact"; // ログイン成功後のリダイレクト先
     }
+
 }

@@ -5,28 +5,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<h2>ログイン画面</h2>
-	
+	<input type="hidden" name="_csrf" value="{{ csrfToken }}">
 	<form th:action="@{/admin/signin}" method="post" th:object="${signinForm}">
-		<!-- CSRFトークンをここに追加 -->
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		
+
 		<!-- エラーメッセージの表示 -->
 		<span th:if="${errorMsg != null}" th:text="${errorMsg}"></span>
 
 		<div>
-			<label>メールアドレス</label>
-			<input type="text" th:field="*{email}" required>
+		    <label>メールアドレス</label>
+		    <input type="text" th:value="*{email}" th:field="*{email}" placeholder="メールアドレス" required="required">
+		    <span th:if="${errorMsg != null}" th:text="${errorMsg}"></span>
 		</div>
 		<div>
-			<label>パスワード</label>
-			<input type="password" th:field="*{password}" required>
+		    <label for="password">パスワード</label>
+		    <input type="password" th:value="*{password}" th:field="*{password}" id="password" placeholder="パスワード" required="required">
 		</div>
 		<div>
 			<input type="submit" value="ログイン">
 		</div>
 	</form>
-
+	<a href="/admin/signin" class="btn btn-secondary">ログアウト</a>
 </body>
 </html>
