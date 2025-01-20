@@ -8,6 +8,7 @@
 <body>
 	<div class="container">
 		<h1>ユーザー情報一覧</h1>
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -31,6 +32,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<a href="/admin/signin" class="btn btn-secondary">ログアウト</a>
 	</div>
 </body>
 </html>

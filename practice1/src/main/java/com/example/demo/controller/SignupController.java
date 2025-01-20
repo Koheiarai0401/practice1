@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class SignupController {
     
     private final SignupRepository signupRepository; // フィールドに変更 (final + @RequiredArgsConstructor)
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/admin/signup")
     public String signup(Model model) {
@@ -56,11 +58,12 @@ public class SignupController {
     public String register(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         SignupForm signupForm = (SignupForm) session.getAttribute("signupForm");
-        
+      
+        var encodedPassword = passwordEncoder.encode(signupForm.getPassword());
         // MySQLのadminsテーブルにデータを挿入
         Signup signup = new Signup();
         signup.setEmail(signupForm.getEmail());
-        signup.setPassword(signupForm.getPassword());
+        signup.setPassword(encodedPassword);
         signup.setLastName(signupForm.getLastName());
         signup.setFirstName(signupForm.getFirstName());
         

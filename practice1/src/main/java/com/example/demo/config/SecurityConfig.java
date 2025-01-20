@@ -26,18 +26,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorize -> authorize
-            	.requestMatchers("/admin/signin", "/admin/signup", "/admin/confirmation", "/admin/signup/complete", "/admin/signup/register", "/admin/signup/confirm").permitAll()//  認証不要
-                .anyRequest().authenticated()//  他のURLはログイン後アクセス可能
-            )
-            .formLogin(form -> form
-                .loginPage("/admin/signin")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .loginProcessingUrl("/admin/signin")
-                .defaultSuccessUrl("/admin/contact", true)
-                .failureUrl("/admin/signin?error")
-            );
+        	.csrf()
+        	.and()
+	            .authorizeHttpRequests()
+	            	.requestMatchers("/admin/contact").authenticated()
+	            	.requestMatchers("/admin/signin",  "/admin/signup", "/admin/confirmation", "/admin/signup/complete", "/admin/signup/register", "/admin/signup/confirm").permitAll()//  認証不要
+	            	.anyRequest().authenticated()//  他のURLはログイン後アクセス可能
+            .and()
+	            .formLogin()
+	                .loginPage("/admin/signin")
+	                .usernameParameter("email")
+	                .passwordParameter("password")
+	                .defaultSuccessUrl("/admin/contact", true)
+	                .failureUrl("/admin/signin?error")
+            ;
         return http.build();
     }
 }
