@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration //@Beanを有効化するもの
 @EnableWebSecurity  //Bean定義が自動で有効化される
@@ -29,8 +30,7 @@ public class SecurityConfig {
         	.csrf()
         	.and()
 	            .authorizeHttpRequests()
-	            	.requestMatchers("/admin/contact").authenticated()
-	            	.requestMatchers("/admin/signin",  "/admin/signup", "/admin/confirmation", "/admin/signup/complete", "/admin/signup/register", "/admin/signup/confirm").permitAll()//  認証不要
+	            	.requestMatchers("/admin/signin").permitAll()//  認証不要
 	            	.anyRequest().authenticated()//  他のURLはログイン後アクセス可能
             .and()
 	            .formLogin()
@@ -39,6 +39,13 @@ public class SecurityConfig {
 	                .passwordParameter("password")
 	                .defaultSuccessUrl("/admin/contact", true)
 	                .failureUrl("/admin/signin?error")
+            .and()
+            	.logout()
+            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            	.logoutUrl("/logout") //ログアウトのURL
+            	.invalidateHttpSession(true)
+                //ログアウト時の遷移先 POSTでアクセス
+                .logoutSuccessUrl("/admin/signin");
             ;
         return http.build();
     }
