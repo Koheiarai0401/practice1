@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+	  <h1>ユーザー情報詳細画面</h1>
+	  <div th:object="${contactData}">
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">お問い合わせID</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{id}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">姓</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{firstName}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">名</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{lastName}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">メールアドレス</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{email}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">電話番号</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{phone}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">郵便番号</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{zipCode}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">住所</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{address}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">建物名</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{buildingName}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">お問い合わせ種別</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{contactType}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">内容</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{body}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">作成日時</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{createdAt}"></p>
+		  </div>
+		</div>
+		<div class="row mx-md-n5">
+		  <div class="col-2 pt-3 border bg-light">更新日時</div>
+		  <div class="col pt-3 border">
+		    <p th:text="*{updatedAt}"></p>
+		  </div>
+		</div>
+	  </div>
+	  <br/>
+	  <div class="text-center">
+	    <a th:href="@{/admin/{id}/edit(id=*{id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
+		<a th:href="@{/admin/{id}/delete(id=*{id})}" class="btn btn-secondary">　削除　</a>
+	    <a href="/admin/contacts" class="btn btn-secondary">一覧に戻る</a>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="logout"/>
+		</form>
+	  </div>
+	</div>
+</body>
+</html>

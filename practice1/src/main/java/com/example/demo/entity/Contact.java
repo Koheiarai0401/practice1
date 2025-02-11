@@ -1,11 +1,16 @@
 package com.example.demo.entity;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
 
@@ -14,7 +19,7 @@ import lombok.Data;
 @Table(name = "contacts")
 public class Contact {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -44,4 +49,12 @@ public class Contact {
 
     @Column(name = "body", nullable = false)
     private String body;
+    
+    @Column(name = "created_at",updatable = false)
+    @CreatedDate
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    @LastModifiedDate
+    private Date updatedAt;
 }

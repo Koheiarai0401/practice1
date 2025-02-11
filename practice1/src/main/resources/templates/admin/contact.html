@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー</title>
+</head>
+<body>
+	<div class="container">
+		<h1>ユーザー情報一覧</h1>
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>お問い合わせID</th>
+					<th>姓</th>
+					<th>名</th>
+					<th>お問い合わせ種別</th>
+					<th>作成日時</th>
+					<th>更新日時</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="contact : ${contactlist}" th:object="${contact}" class="align-middle">
+					<td th:text="*{id}"></td>
+					<td th:text="*{firstName}"></td>
+					<td th:text="*{lastName}"></td>
+					<td th:text="*{contactType}"></td>
+					<td th:text="${#dates.format(contact.createdAt, 'yyyy/MM/dd')}"></td>
+					<td th:text="${#dates.format(contact.updatedAt, 'yyyy/MM/dd')}"></td>
+					<td><a th:href="@{/admin/{id}(id=*{id})}" class="btn btn-secondary">詳細</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="logout"/>
+		</form>
+	</div>
+</body>
+</html>
